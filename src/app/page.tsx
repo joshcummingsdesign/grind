@@ -1,66 +1,63 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { Typography, Button, CircularProgress } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { useRouter } from "next/navigation";
+import { StreakGraph } from "@/components/StreakGraph";
+import { CurrentWorkoutCard } from "@/components/CurrentWorkoutCard";
+import { useProgress } from "@/hooks/useProgress";
+import { workouts } from "@/data/workouts";
 
 export default function Home() {
+  const router = useRouter();
+  const { progress, isLoaded } = useProgress();
+
+  if (!isLoaded) {
+    return (
+      <LoadingContainer>
+        <CircularProgress />
+      </LoadingContainer>
+    );
+  }
+
+  const currentWorkout = workouts[progress.currentWorkoutIndex];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <PageContainer>
+      <Typography variant="h4" gutterBottom>
+        Grind
+      </Typography>
+
+      <StreakGraph completedDates={progress.completedDates} />
+
+      <CurrentWorkoutCard workout={currentWorkout} />
+
+      <StartButton
+        variant="contained"
+        size="large"
+        fullWidth
+        onClick={() => router.push("/workout")}
+      >
+        Start Workout
+      </StartButton>
+    </PageContainer>
   );
 }
+
+const PageContainer = styled("div")(({ theme }) => ({
+  padding: theme.spacing(2),
+  maxWidth: 600,
+  margin: "0 auto",
+}));
+
+const LoadingContainer = styled("div")({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
+});
+
+const StartButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  padding: theme.spacing(2),
+}));

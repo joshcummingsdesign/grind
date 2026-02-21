@@ -1,0 +1,87 @@
+"use client";
+
+import { Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
+import { calculateMomentum } from "@/lib/momentum";
+
+type StreakGraphProps = {
+  completedDates: string[];
+};
+
+export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
+  const data = calculateMomentum(completedDates);
+
+  if (data.length === 0) {
+    return (
+      <GraphContainer>
+        <Typography variant="subtitle2" color="text.secondary">
+          Momentum
+        </Typography>
+        <EmptyState>
+          <Typography color="text.secondary">
+            Complete your first workout to see your momentum graph
+          </Typography>
+        </EmptyState>
+      </GraphContainer>
+    );
+  }
+
+  return (
+    <GraphContainer>
+      <Typography variant="subtitle2" color="text.secondary">
+        Momentum
+      </Typography>
+      <ChartWrapper>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data}>
+            <XAxis dataKey="date" hide />
+            <YAxis hide domain={[0, "auto"]} />
+            <Tooltip
+              labelFormatter={(label) => `Date: ${label}`}
+              formatter={(value) =>
+                typeof value === "number"
+                  ? [value.toFixed(1), "Momentum"]
+                  : [String(value), "Momentum"]
+              }
+            />
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke="#2e7d32"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </ChartWrapper>
+    </GraphContainer>
+  );
+};
+
+const GraphContainer = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+}));
+
+const ChartWrapper = styled("div")({
+  height: 150,
+  marginTop: 8,
+});
+
+const EmptyState = styled("div")(({ theme }) => ({
+  height: 150,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: theme.palette.grey[100],
+  borderRadius: theme.shape.borderRadius,
+  marginTop: theme.spacing(1),
+}));
