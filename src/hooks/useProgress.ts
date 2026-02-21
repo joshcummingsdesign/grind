@@ -7,8 +7,7 @@ const STORAGE_KEY = "grind-progress";
 
 const defaultProgress: UserProgress = {
   currentWorkoutIndex: 0,
-  strengthLevels: {},
-  selectedAlternates: {},
+  phaseLevels: {},
   completedDates: [],
   lastReps: {},
 };
@@ -45,25 +44,14 @@ export const useProgress = () => {
     }));
   };
 
-  const setStrengthLevel = (workoutId: string, level: number) => {
+  const setPhaseLevel = (workoutId: string, phase: string, level: number) => {
     setProgress((prev) => ({
       ...prev,
-      strengthLevels: { ...prev.strengthLevels, [workoutId]: level },
-    }));
-  };
-
-  const setAlternate = (
-    workoutId: string,
-    phase: string,
-    alternateIndex: number
-  ) => {
-    setProgress((prev) => ({
-      ...prev,
-      selectedAlternates: {
-        ...prev.selectedAlternates,
+      phaseLevels: {
+        ...prev.phaseLevels,
         [workoutId]: {
-          ...prev.selectedAlternates[workoutId],
-          [phase]: alternateIndex,
+          ...prev.phaseLevels[workoutId],
+          [phase]: level,
         },
       },
     }));
@@ -73,7 +61,6 @@ export const useProgress = () => {
     progress,
     isLoaded,
     completeWorkout,
-    setStrengthLevel,
-    setAlternate,
+    setPhaseLevel,
   };
 };

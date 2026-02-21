@@ -1,6 +1,13 @@
 "use client";
 
-import { Card, CardContent, Typography, Checkbox } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Checkbox,
+  IconButton,
+} from "@mui/material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import { Exercise } from "@/types";
 import { ExerciseItem } from "./ExerciseItem";
@@ -15,6 +22,9 @@ type PhaseCardProps = {
   isStrength?: boolean;
   strengthReps?: number[];
   onStrengthRepsChange?: (reps: number[]) => void;
+  currentLevel?: number;
+  maxLevel?: number;
+  onLevelChange?: (level: number) => void;
 };
 
 export const PhaseCard = ({
@@ -26,6 +36,9 @@ export const PhaseCard = ({
   isStrength = false,
   strengthReps = [0, 0, 0],
   onStrengthRepsChange,
+  currentLevel = 1,
+  maxLevel = 1,
+  onLevelChange,
 }: PhaseCardProps) => {
   return (
     <StyledCard completed={completed}>
@@ -35,6 +48,25 @@ export const PhaseCard = ({
             <Checkbox checked={completed} onChange={onToggleComplete} />
           </CheckboxWrapper>
           <Typography variant="h6">{title}</Typography>
+          {maxLevel > 1 && onLevelChange && (
+            <LevelSelector>
+              <IconButton
+                size="small"
+                onClick={() => onLevelChange(currentLevel - 1)}
+                disabled={currentLevel <= 1}
+              >
+                <ChevronLeft />
+              </IconButton>
+              <Typography variant="body2">Level {currentLevel}</Typography>
+              <IconButton
+                size="small"
+                onClick={() => onLevelChange(currentLevel + 1)}
+                disabled={currentLevel >= maxLevel}
+              >
+                <ChevronRight />
+              </IconButton>
+            </LevelSelector>
+          )}
         </HeaderRow>
         {exercises.map((exercise, index) => (
           <div key={index}>
@@ -72,5 +104,12 @@ const HeaderRow = styled("div")(({ theme }) => ({
 }));
 
 const CheckboxWrapper = styled("div")({
+  pointerEvents: "auto",
+});
+
+const LevelSelector = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  marginLeft: "auto",
   pointerEvents: "auto",
 });

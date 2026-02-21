@@ -8,11 +8,11 @@ import { PhaseCard } from "@/components/PhaseCard";
 import { ExerciseModal } from "@/components/ExerciseModal";
 import { useProgress } from "@/hooks/useProgress";
 import { workouts } from "@/data/workouts";
-import { Exercise } from "@/types";
+import { Exercise, Phase } from "@/types";
 
 export default function WorkoutPage() {
   const router = useRouter();
-  const { progress, isLoaded, completeWorkout } = useProgress();
+  const { progress, isLoaded, completeWorkout, setPhaseLevel } = useProgress();
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
     null
   );
@@ -27,8 +27,21 @@ export default function WorkoutPage() {
   });
 
   const currentWorkout = workouts[progress.currentWorkoutIndex];
-  const strengthLevel = progress.strengthLevels[currentWorkout?.id] || 1;
   const lastReps = progress.lastReps[currentWorkout?.id];
+
+  const getLevel = (phase: string): number => {
+    return progress.phaseLevels[currentWorkout?.id]?.[phase] || 1;
+  };
+
+  const getPhaseExercises = (phase: Phase, phaseKey: string): Exercise[] => {
+    const level = getLevel(phaseKey);
+    return phase.levels[level]?.exercises || [];
+  };
+
+  const getMaxLevel = (phase: Phase): number => {
+    const levels = Object.keys(phase.levels).map(Number);
+    return Math.max(...levels);
+  };
 
   useEffect(() => {
     if (lastReps) {
@@ -43,9 +56,6 @@ export default function WorkoutPage() {
       </LoadingContainer>
     );
   }
-
-  const strengthExercise =
-    currentWorkout.phases.strength.levels[strengthLevel]?.exercise;
 
   const togglePhase = (phase: string) => {
     setCompletedPhases((prev) => ({
@@ -69,37 +79,49 @@ export default function WorkoutPage() {
 
       <PhaseCard
         title="Tension Control"
-        exercises={currentWorkout.phases.tensionControl.exercises}
+        exercises={getPhaseExercises(currentWorkout.phases.tensionControl, "tensionControl")}
         onExerciseClick={setSelectedExercise}
         completed={completedPhases.tensionControl}
         onToggleComplete={() => togglePhase("tensionControl")}
+        currentLevel={getLevel("tensionControl")}
+        maxLevel={getMaxLevel(currentWorkout.phases.tensionControl)}
+        onLevelChange={(level) => setPhaseLevel(currentWorkout.id, "tensionControl", level)}
       />
 
       <PhaseCard
         title="Stability"
-        exercises={currentWorkout.phases.stability.exercises}
+        exercises={getPhaseExercises(currentWorkout.phases.stability, "stability")}
         onExerciseClick={setSelectedExercise}
         completed={completedPhases.stability}
         onToggleComplete={() => togglePhase("stability")}
+        currentLevel={getLevel("stability")}
+        maxLevel={getMaxLevel(currentWorkout.phases.stability)}
+        onLevelChange={(level) => setPhaseLevel(currentWorkout.id, "stability", level)}
       />
 
       <PhaseCard
         title="Strength"
-        exercises={strengthExercise ? [strengthExercise] : []}
+        exercises={getPhaseExercises(currentWorkout.phases.strength, "strength")}
         onExerciseClick={setSelectedExercise}
         completed={completedPhases.strength}
         onToggleComplete={() => togglePhase("strength")}
         isStrength
         strengthReps={strengthReps}
         onStrengthRepsChange={setStrengthReps}
+        currentLevel={getLevel("strength")}
+        maxLevel={getMaxLevel(currentWorkout.phases.strength)}
+        onLevelChange={(level) => setPhaseLevel(currentWorkout.id, "strength", level)}
       />
 
       <PhaseCard
         title="Conditioning"
-        exercises={currentWorkout.phases.conditioning.exercises}
+        exercises={getPhaseExercises(currentWorkout.phases.conditioning, "conditioning")}
         onExerciseClick={setSelectedExercise}
         completed={completedPhases.conditioning}
         onToggleComplete={() => togglePhase("conditioning")}
+        currentLevel={getLevel("conditioning")}
+        maxLevel={getMaxLevel(currentWorkout.phases.conditioning)}
+        onLevelChange={(level) => setPhaseLevel(currentWorkout.id, "conditioning", level)}
       />
 
       <CompleteButton
