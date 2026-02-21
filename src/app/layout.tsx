@@ -3,7 +3,7 @@ import { ThemeRegistry } from "@/components/ThemeRegistry";
 
 export const metadata: Metadata = {
   title: "Grind - Workout Tracker",
-  description: "Track your Grind Style Calisthenics workouts",
+  description: "Track your Grind Style Calisthenics workouts.",
 };
 
 export default function RootLayout({
