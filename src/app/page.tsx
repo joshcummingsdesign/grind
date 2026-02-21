@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <PageContainer>
       <Typography variant="h4" gutterBottom>
-        Grind
+        Workout Tracker
       </Typography>
 
       <StreakGraph completedDates={progress.completedDates} />

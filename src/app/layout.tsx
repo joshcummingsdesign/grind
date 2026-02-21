@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ThemeRegistry } from "@/components/ThemeRegistry";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Grind - Workout Tracker",
@@ -14,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

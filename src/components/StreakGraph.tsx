@@ -38,7 +38,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
   return (
     <GraphContainer>
       <Typography variant="subtitle2" color="text.secondary">
-        Momentum — Workout Consistency
+        Momentum (Workout Consistency)
       </Typography>
       <ChartWrapper>
         <ResponsiveContainer width="100%" height="100%">
@@ -56,6 +56,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
                   ? [value.toFixed(1), "Momentum"]
                   : [String(value), "Momentum"]
               }
+              separator=": "
             />
             <Line
               type="monotone"
