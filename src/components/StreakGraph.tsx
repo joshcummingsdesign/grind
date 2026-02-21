@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import dayjs from "dayjs";
 import { calculateMomentum } from "@/lib/momentum";
 
 type StreakGraphProps = {
@@ -37,15 +38,19 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
   return (
     <GraphContainer>
       <Typography variant="subtitle2" color="text.secondary">
-        Momentum
+        Momentum — Workout Consistency
       </Typography>
       <ChartWrapper>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
-            <XAxis dataKey="date" hide />
-            <YAxis hide domain={[0, "auto"]} />
+            <XAxis
+              dataKey="date"
+              tickFormatter={(date: string) => dayjs(date).format("M/D/YY")}
+              tick={{ fontSize: 12 }}
+            />
+            <YAxis domain={[0, "auto"]} tick={{ fontSize: 12 }} width={30} />
             <Tooltip
-              labelFormatter={(label) => `Date: ${label}`}
+              labelFormatter={(label) => dayjs(String(label)).format("M/D/YY")}
               formatter={(value) =>
                 typeof value === "number"
                   ? [value.toFixed(1), "Momentum"]
