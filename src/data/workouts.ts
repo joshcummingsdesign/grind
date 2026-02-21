@@ -47,7 +47,7 @@ export const workouts: Workout[] = [
           },
         },
       },
-      finisher: {
+      conditioning: {
         exercises: [
           {
             name: "Vertical Pulls",
@@ -100,7 +100,7 @@ export const workouts: Workout[] = [
           },
         },
       },
-      finisher: {
+      conditioning: {
         exercises: [
           {
             name: "Wall Pushups",
@@ -158,7 +158,7 @@ export const workouts: Workout[] = [
           },
         },
       },
-      finisher: {
+      conditioning: {
         exercises: [
           {
             name: "Plank",
@@ -216,7 +216,7 @@ export const workouts: Workout[] = [
           },
         },
       },
-      finisher: {
+      conditioning: {
         exercises: [
           {
             name: "Hamstring Curls",
@@ -269,7 +269,7 @@ export const workouts: Workout[] = [
           },
         },
       },
-      finisher: {
+      conditioning: {
         exercises: [
           {
             name: "Strap Hip Abduction",
@@ -327,7 +327,7 @@ export const workouts: Workout[] = [
           },
         },
       },
-      finisher: {
+      conditioning: {
         exercises: [
           {
             name: "Squat Jumps",

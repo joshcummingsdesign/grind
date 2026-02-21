@@ -17,6 +17,14 @@ export default function WorkoutPage() {
     null
   );
   const [strengthReps, setStrengthReps] = useState<number[]>([0, 0, 0]);
+  const [completedPhases, setCompletedPhases] = useState<
+    Record<string, boolean>
+  >({
+    tensionControl: false,
+    stability: false,
+    strength: false,
+    conditioning: false,
+  });
 
   const currentWorkout = workouts[progress.currentWorkoutIndex];
   const strengthLevel = progress.strengthLevels[currentWorkout?.id] || 1;
@@ -39,7 +47,14 @@ export default function WorkoutPage() {
   const strengthExercise =
     currentWorkout.phases.strength.levels[strengthLevel]?.exercise;
 
-  const allRepsEntered = strengthReps.every((rep) => rep > 0);
+  const togglePhase = (phase: string) => {
+    setCompletedPhases((prev) => ({
+      ...prev,
+      [phase]: !prev[phase],
+    }));
+  };
+
+  const allPhasesCompleted = Object.values(completedPhases).every(Boolean);
 
   const handleComplete = () => {
     completeWorkout(currentWorkout.id, strengthReps);
@@ -56,34 +71,42 @@ export default function WorkoutPage() {
         title="Tension Control"
         exercises={currentWorkout.phases.tensionControl.exercises}
         onExerciseClick={setSelectedExercise}
+        completed={completedPhases.tensionControl}
+        onToggleComplete={() => togglePhase("tensionControl")}
       />
 
       <PhaseCard
         title="Stability"
         exercises={currentWorkout.phases.stability.exercises}
         onExerciseClick={setSelectedExercise}
+        completed={completedPhases.stability}
+        onToggleComplete={() => togglePhase("stability")}
       />
 
       <PhaseCard
         title="Strength"
         exercises={strengthExercise ? [strengthExercise] : []}
         onExerciseClick={setSelectedExercise}
+        completed={completedPhases.strength}
+        onToggleComplete={() => togglePhase("strength")}
         isStrength
         strengthReps={strengthReps}
         onStrengthRepsChange={setStrengthReps}
       />
 
       <PhaseCard
-        title="Finisher"
-        exercises={currentWorkout.phases.finisher.exercises}
+        title="Conditioning"
+        exercises={currentWorkout.phases.conditioning.exercises}
         onExerciseClick={setSelectedExercise}
+        completed={completedPhases.conditioning}
+        onToggleComplete={() => togglePhase("conditioning")}
       />
 
       <CompleteButton
         variant="contained"
         size="large"
         fullWidth
-        disabled={!allRepsEntered}
+        disabled={!allPhasesCompleted}
         onClick={handleComplete}
       >
         Complete Workout

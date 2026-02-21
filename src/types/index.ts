@@ -13,7 +13,7 @@ export type Workout = {
     tensionControl: { exercises: Exercise[]; alternates?: Exercise[] };
     stability: { exercises: Exercise[]; alternates?: Exercise[] };
     strength: { levels: Record<number, { exercise: Exercise }> };
-    finisher: { exercises: Exercise[]; alternates?: Exercise[] };
+    conditioning: { exercises: Exercise[]; alternates?: Exercise[] };
   };
 };
 

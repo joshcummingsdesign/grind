@@ -5,7 +5,7 @@ A workout tracker for Grind Style Calisthenics.
 ## Features
 
 - 6 sequential workouts: Pull, Push, Flexion, Extension, Lateral, and Squat chains
-- Each workout has 4 phases: Tension Control, Stability, Strength, and Finisher
+- Each workout has 4 phases: Tension Control, Stability, Strength, and Conditioning
 - Track reps for strength exercises (3 sets per workout)
 - Previous rep counts pre-fill for the next session
 - Momentum graph showing workout consistency over time
