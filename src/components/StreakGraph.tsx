@@ -1,6 +1,6 @@
 "use client";
 
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
   LineChart,
@@ -18,6 +18,7 @@ type StreakGraphProps = {
 };
 
 export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
+  const theme = useTheme();
   const data = calculateMomentum(completedDates);
 
   if (data.length === 0) {
@@ -61,7 +62,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
             <Line
               type="monotone"
               dataKey="value"
-              stroke="#2e7d32"
+              stroke={theme.palette.primary.main}
               strokeWidth={2}
               dot={false}
             />
