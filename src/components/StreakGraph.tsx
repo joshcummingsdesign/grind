@@ -24,7 +24,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
   if (data.length === 0) {
     return (
       <GraphContainer>
-        <Typography variant="subtitle2" color="text.secondary">
+        <Typography variant="body2">
           Momentum (Workout Consistency)
         </Typography>
         <EmptyState>
@@ -38,7 +38,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
 
   return (
     <GraphContainer>
-      <Typography variant="subtitle2" color="text.secondary">
+      <Typography variant="body2">
         Momentum (Workout Consistency)
       </Typography>
       <ChartWrapper>
@@ -47,9 +47,10 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
             <XAxis
               dataKey="date"
               tickFormatter={(date: string) => dayjs(date).format("M/D/YY")}
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize: 12, fill: theme.palette.text.secondary }}
+              stroke={theme.palette.text.secondary}
             />
-            <YAxis domain={[0, "auto"]} tick={{ fontSize: 12 }} width={30} />
+            <YAxis domain={[0, "auto"]} tick={{ fontSize: 12, fill: theme.palette.text.secondary }} width={30} stroke={theme.palette.text.secondary} />
             <Tooltip
               labelFormatter={(label) => dayjs(String(label)).format("M/D/YY")}
               formatter={(value) =>
@@ -58,6 +59,13 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
                   : [String(value), "Momentum"]
               }
               separator=": "
+              contentStyle={{
+                backgroundColor: theme.palette.background.paper,
+                border: `1px solid ${theme.palette.grey[700]}`,
+                borderRadius: theme.shape.borderRadius,
+                color: theme.palette.text.primary,
+              }}
+              labelStyle={{ color: theme.palette.text.primary }}
             />
             <Line
               type="monotone"
@@ -88,7 +96,7 @@ const EmptyState = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: theme.palette.grey[100],
+  backgroundColor: theme.palette.grey[900],
   borderRadius: theme.shape.borderRadius,
   marginTop: theme.spacing(1),
 }));

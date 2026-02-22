@@ -60,4 +60,6 @@ const LoadingContainer = styled("div")({
 const StartButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
   padding: theme.spacing(2),
+  borderRadius: 50,
+  fontSize: "1.1rem",
 }));

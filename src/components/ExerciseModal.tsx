@@ -1,6 +1,8 @@
 "use client";
 
-import { Dialog, DialogTitle, DialogContent, Typography } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, Typography, IconButton } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
 import { Exercise } from "@/types";
 
 type ExerciseModalProps = {
@@ -18,7 +20,12 @@ export const ExerciseModal = ({
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>{exercise.name}</DialogTitle>
+      <StyledDialogTitle>
+        {exercise.name}
+        <CloseButton onClick={onClose}>
+          <Close />
+        </CloseButton>
+      </StyledDialogTitle>
       <DialogContent>
         <Typography>{exercise.description}</Typography>
         {exercise.target && (
@@ -27,7 +34,7 @@ export const ExerciseModal = ({
           </Typography>
         )}
         {exercise.sets && exercise.sets > 1 && (
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" marginTop={2}>
             Sets: {exercise.sets}
           </Typography>
         )}
@@ -35,3 +42,13 @@ export const ExerciseModal = ({
     </Dialog>
   );
 };
+
+const StyledDialogTitle = styled(DialogTitle)({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+});
+
+const CloseButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+}));

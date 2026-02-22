@@ -27,15 +27,16 @@ const ExerciseButton = styled("button")(({ theme }) => ({
   width: "100%",
   padding: theme.spacing(1.5),
   marginBottom: theme.spacing(1),
-  backgroundColor: theme.palette.grey[100],
+  backgroundColor: theme.palette.grey[800],
   border: "none",
   borderRadius: theme.shape.borderRadius,
   textAlign: "left",
   cursor: "pointer",
+  color: theme.palette.text.primary,
   "&:hover": {
-    backgroundColor: theme.palette.grey[200],
+    backgroundColor: theme.palette.grey[700],
   },
   "&:active": {
-    backgroundColor: theme.palette.grey[300],
+    backgroundColor: theme.palette.grey[600],
   },
 }));

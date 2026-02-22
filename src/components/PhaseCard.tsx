@@ -47,9 +47,11 @@ export const PhaseCard = ({
           <CheckboxWrapper>
             <Checkbox checked={completed} onChange={onToggleComplete} />
           </CheckboxWrapper>
-          <Typography variant="h6">{title}</Typography>
+          <ContentWrapper completed={completed}>
+            <Typography variant="h6">{title}</Typography>
+          </ContentWrapper>
           {maxLevel > 1 && onLevelChange && (
-            <LevelSelector>
+            <LevelSelector completed={completed}>
               <IconButton
                 size="small"
                 onClick={() => onLevelChange(currentLevel - 1)}
@@ -68,20 +70,22 @@ export const PhaseCard = ({
             </LevelSelector>
           )}
         </HeaderRow>
-        {exercises.map((exercise, index) => (
-          <div key={index}>
-            <ExerciseItem
-              exercise={exercise}
-              onClick={() => onExerciseClick(exercise)}
-            />
-            {isStrength && onStrengthRepsChange && (
-              <StrengthInputs
-                reps={strengthReps}
-                onChange={onStrengthRepsChange}
+        <ContentWrapper completed={completed}>
+          {exercises.map((exercise, index) => (
+            <div key={index}>
+              <ExerciseItem
+                exercise={exercise}
+                onClick={() => onExerciseClick(exercise)}
               />
-            )}
-          </div>
-        ))}
+              {isStrength && onStrengthRepsChange && (
+                <StrengthInputs
+                  reps={strengthReps}
+                  onChange={onStrengthRepsChange}
+                />
+              )}
+            </div>
+          ))}
+        </ContentWrapper>
       </CardContent>
     </StyledCard>
   );
@@ -91,9 +95,7 @@ const StyledCard = styled(Card, {
   shouldForwardProp: (prop) => prop !== "completed",
 })<{ completed?: boolean }>(({ theme, completed }) => ({
   marginBottom: theme.spacing(2),
-  opacity: completed ? 0.5 : 1,
-  backgroundColor: completed ? theme.palette.grey[100] : undefined,
-  pointerEvents: completed ? "none" : undefined,
+  backgroundColor: completed ? theme.palette.grey[900] : theme.palette.background.paper,
 }));
 
 const HeaderRow = styled("div")(({ theme }) => ({
@@ -107,9 +109,19 @@ const CheckboxWrapper = styled("div")({
   pointerEvents: "auto",
 });
 
-const LevelSelector = styled("div")({
+const ContentWrapper = styled("div", {
+  shouldForwardProp: (prop) => prop !== "completed",
+})<{ completed?: boolean }>(({ completed }) => ({
+  opacity: completed ? 0.5 : 1,
+  pointerEvents: completed ? "none" : undefined,
+}));
+
+const LevelSelector = styled("div", {
+  shouldForwardProp: (prop) => prop !== "completed",
+})<{ completed?: boolean }>(({ completed }) => ({
   display: "flex",
   alignItems: "center",
   marginLeft: "auto",
   pointerEvents: "auto",
-});
+  opacity: completed ? 0.5 : 1,
+}));
