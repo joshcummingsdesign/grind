@@ -7,11 +7,18 @@ import {
 } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
+declare module "@mui/material/styles" {
+  interface TypeBackground {
+    surface: string;
+  }
+}
+
 const colors = {
   primary: "#CDDC39",
   secondary: "#C6FF00",
   background: "#121212",
   paper: "#1A1A1A",
+  surface: "#282828",
   border: "#333333",
   textPrimary: "#FFFFFF",
   textSecondary: "#9E9E9E",
@@ -41,6 +48,7 @@ const theme = createTheme({
     background: {
       default: colors.background,
       paper: colors.paper,
+      surface: colors.surface,
     },
     text: {
       primary: colors.textPrimary,

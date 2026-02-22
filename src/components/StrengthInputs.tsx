@@ -19,9 +19,9 @@ export const StrengthInputs = ({ reps, onChange }: StrengthInputsProps) => {
     <InputsContainer>
       {[0, 1, 2].map((index) => (
         <SetInput key={index}>
-          <Typography variant="caption" color="text.secondary">
+          <SetLabel variant="caption">
             Set {index + 1}
-          </Typography>
+          </SetLabel>
           <StyledTextField
             type="number"
             value={reps[index] || ""}
@@ -48,6 +48,10 @@ const SetInput = styled("div")({
   alignItems: "center",
   flex: 1,
 });
+
+const SetLabel = styled(Typography)(({ theme }) => ({
+  color: theme.palette.grey[300],
+}));
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   "& input": {
