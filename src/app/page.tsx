@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { Typography, Button, CircularProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
+import confetti from "canvas-confetti";
 import { StreakGraph } from "@/components/StreakGraph";
 import { CurrentWorkoutCard } from "@/components/CurrentWorkoutCard";
 import { useProgress } from "@/hooks/useProgress";
@@ -11,6 +13,17 @@ import { workouts } from "@/data/workouts";
 export default function Home() {
   const router = useRouter();
   const { progress, isLoaded } = useProgress();
+
+  useEffect(() => {
+    if (sessionStorage.getItem("workoutJustCompleted")) {
+      sessionStorage.removeItem("workoutJustCompleted");
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    }
+  }, []);
 
   if (!isLoaded) {
     return (

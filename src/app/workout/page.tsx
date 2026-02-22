@@ -68,6 +68,7 @@ export default function WorkoutPage() {
 
   const handleComplete = () => {
     completeWorkout(currentWorkout.id, strengthReps);
+    sessionStorage.setItem("workoutJustCompleted", "true");
     router.push("/");
   };
 
