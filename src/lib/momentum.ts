@@ -6,7 +6,7 @@ export type MomentumPoint = {
 };
 
 export const calculateMomentum = (
-  completedDates: string[]
+  completedDates: string[],
 ): MomentumPoint[] => {
   if (completedDates.length === 0) {
     return [];

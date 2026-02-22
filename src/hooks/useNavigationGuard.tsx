@@ -17,13 +17,19 @@ type NavigationGuardContextType = {
 };
 
 const NavigationGuardContext = createContext<NavigationGuardContextType | null>(
-  null
+  null,
 );
 
-export const NavigationGuardProvider = ({ children }: { children: ReactNode }) => {
+export const NavigationGuardProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const router = useRouter();
   const [guard, setGuard] = useState<(() => void) | null>(null);
-  const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
+  const [pendingNavigation, setPendingNavigation] = useState<string | null>(
+    null,
+  );
 
   const navigate = useCallback(
     (to: string) => {
@@ -34,7 +40,7 @@ export const NavigationGuardProvider = ({ children }: { children: ReactNode }) =
         router.push(to);
       }
     },
-    [guard, router]
+    [guard, router],
   );
 
   const registerGuard = useCallback((onBlock: () => void) => {
@@ -77,17 +83,19 @@ export const NavigationGuardProvider = ({ children }: { children: ReactNode }) =
   }, [guard]);
 
   return (
-    <NavigationGuardContext.Provider value={{ navigate, registerGuard, proceed }}>
+    <NavigationGuardContext.Provider
+      value={{ navigate, registerGuard, proceed }}
+    >
       {children}
     </NavigationGuardContext.Provider>
   );
-}
+};
 
 export const useNavigationGuard = () => {
   const context = useContext(NavigationGuardContext);
   if (!context) {
     throw new Error(
-      "useNavigationGuard must be used within NavigationGuardProvider"
+      "useNavigationGuard must be used within NavigationGuardProvider",
     );
   }
   return context;

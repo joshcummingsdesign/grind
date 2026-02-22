@@ -19,9 +19,7 @@ export const StrengthInputs = ({ reps, onChange }: StrengthInputsProps) => {
     <InputsContainer>
       {[0, 1, 2].map((index) => (
         <SetInput key={index}>
-          <SetLabel variant="caption">
-            Set {index + 1}
-          </SetLabel>
+          <SetLabel variant="caption">Set {index + 1}</SetLabel>
           <StyledTextField
             type="number"
             value={reps[index] || ""}

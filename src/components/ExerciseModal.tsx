@@ -1,6 +1,12 @@
 "use client";
 
-import { Dialog, DialogTitle, DialogContent, Typography, IconButton } from "@mui/material";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import { Exercise } from "@/types";

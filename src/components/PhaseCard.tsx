@@ -95,7 +95,9 @@ const StyledCard = styled(Card, {
   shouldForwardProp: (prop) => prop !== "completed",
 })<{ completed?: boolean }>(({ theme, completed }) => ({
   marginBottom: theme.spacing(2),
-  backgroundColor: completed ? theme.palette.grey[900] : theme.palette.background.paper,
+  backgroundColor: completed
+    ? theme.palette.grey[900]
+    : theme.palette.background.paper,
 }));
 
 const HeaderRow = styled("div")(({ theme }) => ({
