@@ -28,7 +28,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
           Momentum (Workout Consistency)
         </Typography>
         <EmptyState>
-          <Typography color="text.secondary">
+          <Typography variant="body2" color="text.secondary">
             Complete your first workout to see your momentum graph
           </Typography>
         </EmptyState>
