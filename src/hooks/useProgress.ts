@@ -39,7 +39,9 @@ export const useProgress = () => {
     setProgress((prev) => ({
       ...prev,
       currentWorkoutIndex: (prev.currentWorkoutIndex + 1) % 6,
-      completedDates: [...prev.completedDates, today],
+      completedDates: prev.completedDates.includes(today)
+        ? prev.completedDates
+        : [...prev.completedDates, today],
       lastReps: { ...prev.lastReps, [workoutId]: reps },
     }));
   };
