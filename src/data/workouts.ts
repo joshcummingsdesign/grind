@@ -12,7 +12,7 @@ export const workouts: Workout[] = [
           1: {
             exercises: [
               {
-                name: "Push-up Scap Movements",
+                name: "Scap Push-ups",
                 description:
                   "In a push-up position, protract your shoulder blades (push the ground away), then retract them. Keep arms straight throughout.",
               },
@@ -45,7 +45,7 @@ export const workouts: Workout[] = [
               {
                 name: "Incline Push-ups",
                 description:
-                  "Place hands on an elevated surface (bench, step, or wall). Perform push-ups maintaining a straight body line.",
+                  "Place hands on an elevated surface (bench, step, or table). Perform push-ups maintaining a straight body line.",
                 sets: 3,
               },
             ],
@@ -59,7 +59,7 @@ export const workouts: Workout[] = [
               {
                 name: "Wall Push-ups",
                 description:
-                  "Stand facing a wall, arms extended. Lean in and push back out. Focus on controlled movement and full range of motion.",
+                  "Stand facing a wall with your arms extended and place your hands on the wall. Lower yourself toward the wall and push back out. Focus on controlled movement and full range of motion.",
                 target: "10-15",
               },
             ],
@@ -189,7 +189,7 @@ export const workouts: Workout[] = [
               {
                 name: "Assisted Squat",
                 description:
-                  "Hold onto a doorframe, pole, or suspension trainer. Squat down as low as comfortable, using arms for balance assistance only.",
+                  "Hold onto something in front of you (table, doorframe, pole, or rings). Squat down as low as comfortable, using arms for balance assistance only.",
                 sets: 3,
               },
             ],
@@ -225,7 +225,7 @@ export const workouts: Workout[] = [
               {
                 name: "Cat Cow",
                 description:
-                  "On hands and knees, alternate between arching your back (cat) and dropping your belly (cow). Move slowly through full range.",
+                  "On hands and knees, alternate between lifting your belly and rounding your back (cat) and dropping your belly and arching your back (cow). Move slowly through full range.",
               },
               {
                 name: "Seated Floor Press",
@@ -412,7 +412,7 @@ export const workouts: Workout[] = [
           1: {
             exercises: [
               {
-                name: "Strap Hip Abduction",
+                name: "Ring Hip Abduction",
                 description:
                   "Set up with rings as you would for hamstring curls, but instead of pulling, push your feet apart with your toes pointing upwards.",
                 target: "10-15",
