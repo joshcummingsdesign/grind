@@ -92,6 +92,8 @@ const theme = createTheme({
         paper: {
           backgroundColor: colors.paper,
           border: `1px solid ${colors.border}`,
+          width: "calc(100% - 40px)",
+          margin: "32px 0",
         },
       },
     },

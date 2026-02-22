@@ -21,13 +21,15 @@ export const QuitWorkoutModal = ({
   onConfirm,
 }: QuitWorkoutModalProps) => {
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} maxWidth="xs">
       <DialogTitle>Quit Workout?</DialogTitle>
       <DialogContent>
         <Typography>Any unsaved changes will be lost.</Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
+        <Button onClick={onClose} color="inherit">
+          Cancel
+        </Button>
         <Button onClick={onConfirm} color="error">
           Quit
         </Button>

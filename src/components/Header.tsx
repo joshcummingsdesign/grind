@@ -48,7 +48,8 @@ export const Header = () => {
 };
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.grey[800]}`,
+  border: "none !important",
+  borderBottom: `1px solid ${theme.palette.grey[800]} !important`,
   backgroundColor: theme.palette.background.default,
 }));
 
