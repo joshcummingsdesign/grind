@@ -1,18 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Typography, Button, CircularProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
 import { PhaseCard } from "@/components/PhaseCard";
 import { ExerciseModal } from "@/components/ExerciseModal";
+import { QuitWorkoutModal } from "@/components/QuitWorkoutModal";
 import { useProgress } from "@/hooks/useProgress";
+import { useNavigationGuard } from "@/hooks/useNavigationGuard";
 import { workouts } from "@/data/workouts";
 import { Exercise, Phase } from "@/types";
 
 export default function WorkoutPage() {
   const router = useRouter();
   const { progress, isLoaded, completeWorkout, setPhaseLevel } = useProgress();
+  const { registerGuard, proceed } = useNavigationGuard();
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
     null
   );
@@ -25,6 +28,11 @@ export default function WorkoutPage() {
     strength: false,
     conditioning: false,
   });
+  const [showQuitModal, setShowQuitModal] = useState(false);
+
+  useEffect(() => {
+    return registerGuard(() => setShowQuitModal(true));
+  }, [registerGuard]);
 
   const currentWorkout = workouts[progress.currentWorkoutIndex];
   const lastReps = progress.lastReps[currentWorkout?.id];
@@ -139,6 +147,12 @@ export default function WorkoutPage() {
         exercise={selectedExercise}
         open={!!selectedExercise}
         onClose={() => setSelectedExercise(null)}
+      />
+
+      <QuitWorkoutModal
+        open={showQuitModal}
+        onClose={() => setShowQuitModal(false)}
+        onConfirm={proceed}
       />
     </PageContainer>
   );

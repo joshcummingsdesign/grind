@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  ThemeProvider as MuiThemeProvider,
-  CssBaseline,
-  createTheme,
-} from "@mui/material";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material";
 
 declare module "@mui/material/styles" {
   interface TypeBackground {
@@ -105,12 +100,5 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  return (
-    <AppRouterCacheProvider>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </MuiThemeProvider>
-    </AppRouterCacheProvider>
-  );
+  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
 };

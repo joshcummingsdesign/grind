@@ -1,30 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { QuitWorkoutModal } from "./QuitWorkoutModal";
+import { useNavigationGuard } from "@/hooks/useNavigationGuard";
 import { Logo } from "./Logo";
 
-const HEADER_HEIGHT = 54;
+const HEADER_HEIGHT = 48;
 
 export const Header = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [showQuitModal, setShowQuitModal] = useState(false);
+  const { navigate } = useNavigationGuard();
 
   const handleLogoClick = () => {
-    if (pathname === "/workout") {
-      setShowQuitModal(true);
-    } else {
-      router.push("/");
-    }
-  };
-
-  const handleConfirmQuit = () => {
-    setShowQuitModal(false);
-    router.push("/");
+    navigate("/");
   };
 
   return (
@@ -38,11 +25,6 @@ export const Header = () => {
         </StyledToolbar>
       </StyledAppBar>
       <Spacer />
-      <QuitWorkoutModal
-        open={showQuitModal}
-        onClose={() => setShowQuitModal(false)}
-        onConfirm={handleConfirmQuit}
-      />
     </>
   );
 };
@@ -53,19 +35,26 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
 }));
 
-const StyledToolbar = styled(Toolbar)({
-  height: `${HEADER_HEIGHT} !important`,
-  "@media (min-width: 600px)": {
-    minHeight: HEADER_HEIGHT,
-  },
-});
+const StyledToolbar = styled("header")(({ theme }) => ({
+  display: "flex",
+  padding: `0 ${theme.spacing(1)}`,
+  height: HEADER_HEIGHT,
+  width: "100%",
+  maxWidth: theme.breakpoints.values.xl,
+  margin: "0 auto",
+}));
 
-const LogoWrapper = styled("div")({
+const LogoWrapper = styled(Button)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: 8,
-  cursor: "pointer",
-});
+  padding: `0 ${theme.spacing(1)}`,
+  minWidth: "auto",
+  textTransform: "none",
+  "&:hover": {
+    backgroundColor: "transparent",
+  },
+}));
 
 const LogoText = styled(Typography)({
   fontWeight: 800,

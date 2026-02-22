@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { CssBaseline } from "@mui/material";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { NavigationGuardProvider } from "@/hooks/useNavigationGuard";
 import { Header } from "@/components/Header";
 import { RouteListener } from "@/components/RouteListener";
 
@@ -19,11 +22,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>
-          <RouteListener />
-          <Header />
-          {children}
-        </ThemeProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider>
+            <CssBaseline />
+            <NavigationGuardProvider>
+              <RouteListener />
+              <Header />
+              {children}
+            </NavigationGuardProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
