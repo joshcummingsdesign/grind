@@ -24,7 +24,7 @@ export const StreakGraph = ({ completedDates }: StreakGraphProps) => {
     return (
       <GraphContainer>
         <Typography variant="subtitle2" color="text.secondary">
-          Momentum
+          Momentum (Workout Consistency)
         </Typography>
         <EmptyState>
           <Typography color="text.secondary">
