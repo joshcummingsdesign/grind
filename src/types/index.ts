@@ -18,6 +18,7 @@ export type Workout = {
     stability: Phase;
     strength: Phase;
     conditioning: Phase;
+    cardio: Phase;
   };
 };
 
@@ -26,4 +27,5 @@ export type UserProgress = {
   phaseLevels: Record<string, Record<string, number>>;
   completedDates: string[];
   lastReps: Record<string, number[]>;
+  lastMiles: number;
 };

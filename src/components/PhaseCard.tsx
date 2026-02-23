@@ -12,6 +12,7 @@ import { styled } from "@mui/material/styles";
 import { Exercise } from "@/types";
 import { ExerciseItem } from "./ExerciseItem";
 import { StrengthInputs } from "./StrengthInputs";
+import { CardioInput } from "./CardioInput";
 
 type PhaseCardProps = {
   title: string;
@@ -22,6 +23,9 @@ type PhaseCardProps = {
   isStrength?: boolean;
   strengthReps?: number[];
   onStrengthRepsChange?: (reps: number[]) => void;
+  isCardio?: boolean;
+  cardioMiles?: number;
+  onCardioMilesChange?: (miles: number) => void;
   currentLevel?: number;
   maxLevel?: number;
   onLevelChange?: (level: number) => void;
@@ -36,6 +40,9 @@ export const PhaseCard = ({
   isStrength = false,
   strengthReps = [0, 0, 0],
   onStrengthRepsChange,
+  isCardio = false,
+  cardioMiles = 0,
+  onCardioMilesChange,
   currentLevel = 1,
   maxLevel = 1,
   onLevelChange,
@@ -81,6 +88,12 @@ export const PhaseCard = ({
                 <StrengthInputs
                   reps={strengthReps}
                   onChange={onStrengthRepsChange}
+                />
+              )}
+              {isCardio && onCardioMilesChange && (
+                <CardioInput
+                  miles={cardioMiles}
+                  onChange={onCardioMilesChange}
                 />
               )}
             </div>

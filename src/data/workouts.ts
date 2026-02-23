@@ -66,6 +66,18 @@ export const workouts: Workout[] = [
           },
         },
       },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog to round out the workout.",
+              },
+            ],
+          },
+        },
+      },
     },
   },
   {
@@ -133,6 +145,18 @@ export const workouts: Workout[] = [
                 description:
                   "Set up at a slight incline and grab a pole or doorframe in front of you. Pull your chest to the pole or doorframe while keeping your body straight. Lower with control.",
                 target: "10-15",
+              },
+            ],
+          },
+        },
+      },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog to round out the workout.",
               },
             ],
           },
@@ -210,6 +234,18 @@ export const workouts: Workout[] = [
           },
         },
       },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog to round out the workout.",
+              },
+            ],
+          },
+        },
+      },
     },
   },
   {
@@ -277,6 +313,18 @@ export const workouts: Workout[] = [
                 description:
                   "Hold a forearm plank position with body in a straight line. Squeeze glutes, brace core, and breathe steadily.",
                 target: "20-30s",
+              },
+            ],
+          },
+        },
+      },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog to round out the workout.",
               },
             ],
           },
@@ -354,6 +402,18 @@ export const workouts: Workout[] = [
           },
         },
       },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog to round out the workout.",
+              },
+            ],
+          },
+        },
+      },
     },
   },
   {
@@ -416,6 +476,18 @@ export const workouts: Workout[] = [
                 description:
                   "Set up with rings as you would for hamstring curls, but instead of pulling, push your feet apart with your toes pointing upwards.",
                 target: "10-15",
+              },
+            ],
+          },
+        },
+      },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog to round out the workout.",
               },
             ],
           },

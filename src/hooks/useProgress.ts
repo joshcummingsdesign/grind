@@ -10,6 +10,7 @@ const defaultProgress: UserProgress = {
   phaseLevels: {},
   completedDates: [],
   lastReps: {},
+  lastMiles: 0,
 };
 
 export const useProgress = () => {
@@ -34,7 +35,7 @@ export const useProgress = () => {
     }
   }, [progress, isLoaded]);
 
-  const completeWorkout = (workoutId: string, reps: number[]) => {
+  const completeWorkout = (workoutId: string, reps: number[], miles: number) => {
     const today = new Date().toISOString().split("T")[0];
     setProgress((prev) => ({
       ...prev,
@@ -43,6 +44,7 @@ export const useProgress = () => {
         ? prev.completedDates
         : [...prev.completedDates, today],
       lastReps: { ...prev.lastReps, [workoutId]: reps },
+      lastMiles: miles,
     }));
   };
 

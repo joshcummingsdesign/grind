@@ -37,9 +37,7 @@ export default function Home() {
 
   return (
     <PageContainer>
-      <Typography variant="h4" gutterBottom>
-        Workout Tracker
-      </Typography>
+      <Heading variant="h4">Workout Tracker</Heading>
 
       <StreakGraph completedDates={progress.completedDates} />
 
@@ -56,6 +54,10 @@ export default function Home() {
     </PageContainer>
   );
 }
+
+const Heading = styled(Typography)(({ theme }) => ({
+  paddingBottom: theme.spacing(3),
+}));
 
 const PageContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),

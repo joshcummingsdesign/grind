@@ -20,6 +20,7 @@ export default function WorkoutPage() {
     null,
   );
   const [strengthReps, setStrengthReps] = useState<number[]>([0, 0, 0]);
+  const [cardioMiles, setCardioMiles] = useState<number>(0);
   const [completedPhases, setCompletedPhases] = useState<
     Record<string, boolean>
   >({
@@ -27,6 +28,7 @@ export default function WorkoutPage() {
     stability: false,
     strength: false,
     conditioning: false,
+    cardio: false,
   });
   const [showQuitModal, setShowQuitModal] = useState(false);
 
@@ -36,6 +38,7 @@ export default function WorkoutPage() {
 
   const currentWorkout = workouts[progress.currentWorkoutIndex];
   const lastReps = progress.lastReps[currentWorkout?.id];
+  const lastMiles = progress.lastMiles;
 
   const getLevel = (phase: string): number => {
     return progress.phaseLevels[currentWorkout?.id]?.[phase] || 1;
@@ -57,6 +60,12 @@ export default function WorkoutPage() {
     }
   }, [lastReps]);
 
+  useEffect(() => {
+    if (lastMiles !== undefined) {
+      setCardioMiles(lastMiles);
+    }
+  }, [lastMiles]);
+
   if (!isLoaded) {
     return (
       <LoadingContainer>
@@ -75,7 +84,7 @@ export default function WorkoutPage() {
   const allPhasesCompleted = Object.values(completedPhases).every(Boolean);
 
   const handleComplete = () => {
-    completeWorkout(currentWorkout.id, strengthReps);
+    completeWorkout(currentWorkout.id, strengthReps, cardioMiles);
     sessionStorage.setItem("workoutJustCompleted", "true");
     router.push("/");
   };
@@ -150,6 +159,22 @@ export default function WorkoutPage() {
         maxLevel={getMaxLevel(currentWorkout.phases.conditioning)}
         onLevelChange={(level) =>
           setPhaseLevel(currentWorkout.id, "conditioning", level)
+        }
+      />
+
+      <PhaseCard
+        title="Cardio"
+        exercises={getPhaseExercises(currentWorkout.phases.cardio, "cardio")}
+        onExerciseClick={setSelectedExercise}
+        completed={completedPhases.cardio}
+        onToggleComplete={() => togglePhase("cardio")}
+        isCardio
+        cardioMiles={cardioMiles}
+        onCardioMilesChange={setCardioMiles}
+        currentLevel={getLevel("cardio")}
+        maxLevel={getMaxLevel(currentWorkout.phases.cardio)}
+        onLevelChange={(level) =>
+          setPhaseLevel(currentWorkout.id, "cardio", level)
         }
       />
 
