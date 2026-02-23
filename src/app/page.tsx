@@ -61,6 +61,7 @@ const PageContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
   maxWidth: 600,
   margin: "0 auto",
+  paddingBottom: theme.spacing(10),
 }));
 
 const LoadingContainer = styled("div")({
