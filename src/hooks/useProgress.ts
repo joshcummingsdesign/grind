@@ -35,7 +35,11 @@ export const useProgress = () => {
     }
   }, [progress, isLoaded]);
 
-  const completeWorkout = (workoutId: string, reps: number[], miles: number) => {
+  const completeWorkout = (
+    workoutId: string,
+    reps: number[],
+    miles: number,
+  ) => {
     const today = new Date().toISOString().split("T")[0];
     setProgress((prev) => ({
       ...prev,
