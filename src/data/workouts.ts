@@ -72,7 +72,7 @@ export const workouts: Workout[] = [
             exercises: [
               {
                 name: "Run",
-                description: "Go for a run or a jog to round out the workout.",
+                description: "Go for a run or a jog.",
               },
             ],
           },
@@ -156,7 +156,7 @@ export const workouts: Workout[] = [
             exercises: [
               {
                 name: "Run",
-                description: "Go for a run or a jog to round out the workout.",
+                description: "Go for a run or a jog.",
               },
             ],
           },
@@ -240,7 +240,7 @@ export const workouts: Workout[] = [
             exercises: [
               {
                 name: "Run",
-                description: "Go for a run or a jog to round out the workout.",
+                description: "Go for a run or a jog.",
               },
             ],
           },
@@ -324,7 +324,7 @@ export const workouts: Workout[] = [
             exercises: [
               {
                 name: "Run",
-                description: "Go for a run or a jog to round out the workout.",
+                description: "Go for a run or a jog.",
               },
             ],
           },
@@ -408,7 +408,7 @@ export const workouts: Workout[] = [
             exercises: [
               {
                 name: "Run",
-                description: "Go for a run or a jog to round out the workout.",
+                description: "Go for a run or a jog.",
               },
             ],
           },
@@ -487,7 +487,7 @@ export const workouts: Workout[] = [
             exercises: [
               {
                 name: "Run",
-                description: "Go for a run or a jog to round out the workout.",
+                description: "Go for a run or a jog.",
               },
             ],
           },
