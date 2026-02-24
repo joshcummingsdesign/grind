@@ -81,90 +81,6 @@ export const workouts: Workout[] = [
     },
   },
   {
-    id: "pull",
-    name: "Pull Chain",
-    description:
-      "You pull chain is on the opposite end of the functional spectrum from your push chain. It includes all of the muscles in your back, shoulders, biceps, and forearm muscles that close your hand into a grip. While the push chain is about pushing your hands away from your torso, your pull chain pulls your hands closer to your torso in any direction. This action naturally occurs when you pull something to yourself or pull yourself upward, but it's also involved in all forms of carrying and holding onto something.",
-    phases: {
-      tensionControl: {
-        levels: {
-          1: {
-            exercises: [
-              {
-                name: "Hands Clasped Scap Movements",
-                description:
-                  "Clasp your hands behind your back and pull your shoulders down and back with all of the muscles in your back. After a few seconds, tense the muscles in your chest and pull your shoulders forward and down. Spend about a minute or so moving your shoulders front to back while keeping your shoulders down and away from your ears as you flex the muscles in your chest and back.",
-              },
-              {
-                name: "Incline Row Start/End Iso",
-                description:
-                  "Hold the start position of a row for 5-10 seconds, then hold the end position (fully contracted) for 5-10 seconds. Focus on tension throughout.",
-              },
-            ],
-          },
-        },
-      },
-      stability: {
-        levels: {
-          1: {
-            exercises: [
-              {
-                name: "Hanging Scap Pulls",
-                description:
-                  "Hang from a bar with arms straight. Without bending your elbows, pull your shoulder blades down and together, lifting your body slightly. Release and repeat.",
-              },
-              {
-                name: "Hanging Shift Left/Right",
-                description:
-                  "While hanging from a bar, shift your weight to one side, then the other. Keep your core engaged and movement controlled.",
-              },
-            ],
-          },
-        },
-      },
-      strength: {
-        levels: {
-          1: {
-            exercises: [
-              {
-                name: "Incline Row",
-                description:
-                  "Set up at an incline using rings at waist height. Pull your chest to the rings while keeping your body straight. Lower with control.",
-                sets: 3,
-              },
-            ],
-          },
-        },
-      },
-      conditioning: {
-        levels: {
-          1: {
-            exercises: [
-              {
-                name: "Vertical Pulls",
-                description:
-                  "Set up at a slight incline and grab a pole or doorframe in front of you. Pull your chest to the pole or doorframe while keeping your body straight. Lower with control.",
-                target: "10-15",
-              },
-            ],
-          },
-        },
-      },
-      cardio: {
-        levels: {
-          1: {
-            exercises: [
-              {
-                name: "Run",
-                description: "Go for a run or a jog.",
-              },
-            ],
-          },
-        },
-      },
-    },
-  },
-  {
     id: "squat",
     name: "Squat Chain",
     description:
@@ -248,6 +164,91 @@ export const workouts: Workout[] = [
       },
     },
   },
+  {
+    id: "pull",
+    name: "Pull Chain",
+    description:
+      "You pull chain is on the opposite end of the functional spectrum from your push chain. It includes all of the muscles in your back, shoulders, biceps, and forearm muscles that close your hand into a grip. While the push chain is about pushing your hands away from your torso, your pull chain pulls your hands closer to your torso in any direction. This action naturally occurs when you pull something to yourself or pull yourself upward, but it's also involved in all forms of carrying and holding onto something.",
+    phases: {
+      tensionControl: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Hands Clasped Scap Movements",
+                description:
+                  "Clasp your hands behind your back and pull your shoulders down and back with all of the muscles in your back. After a few seconds, tense the muscles in your chest and pull your shoulders forward and down. Spend about a minute or so moving your shoulders front to back while keeping your shoulders down and away from your ears as you flex the muscles in your chest and back.",
+              },
+              {
+                name: "Incline Row Start/End Iso",
+                description:
+                  "Hold the start position of a row for 5-10 seconds, then hold the end position (fully contracted) for 5-10 seconds. Focus on tension throughout.",
+              },
+            ],
+          },
+        },
+      },
+      stability: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Hanging Scap Pulls",
+                description:
+                  "Hang from a bar with arms straight. Without bending your elbows, pull your shoulder blades down and together, lifting your body slightly. Release and repeat.",
+              },
+              {
+                name: "Hanging Shift Left/Right",
+                description:
+                  "While hanging from a bar, shift your weight to one side, then the other. Keep your core engaged and movement controlled.",
+              },
+            ],
+          },
+        },
+      },
+      strength: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Incline Row",
+                description:
+                  "Set up at an incline using rings at waist height. Pull your chest to the rings while keeping your body straight. Lower with control.",
+                sets: 3,
+              },
+            ],
+          },
+        },
+      },
+      conditioning: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Vertical Pulls",
+                description:
+                  "Set up at a slight incline and grab a pole or doorframe in front of you. Pull your chest to the pole or doorframe while keeping your body straight. Lower with control.",
+                target: "10-15",
+              },
+            ],
+          },
+        },
+      },
+      cardio: {
+        levels: {
+          1: {
+            exercises: [
+              {
+                name: "Run",
+                description: "Go for a run or a jog.",
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
+
   {
     id: "flexion",
     name: "Flexion Chain",
