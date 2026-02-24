@@ -134,6 +134,16 @@ export const workouts: Workout[] = [
               },
             ],
           },
+          2: {
+            exercises: [
+              {
+                name: "Split Squat",
+                description:
+                  "Start with one foot forward and one foot back, and lunge so that your back knee kisses the ground. Keep your heel down and your front leg close to your centerline.",
+                sets: 3,
+              },
+            ],
+          },
         },
       },
       conditioning: {
