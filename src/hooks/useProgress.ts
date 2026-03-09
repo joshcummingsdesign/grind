@@ -48,7 +48,7 @@ export const useProgress = () => {
       completedDates: prev.completedDates.includes(today)
         ? prev.completedDates
         : [...prev.completedDates, today],
-      lastReps: { ...prev.lastReps, [workoutId]: reps },
+      lastReps: workoutId === "cardio" ? prev.lastReps : { ...prev.lastReps, [workoutId]: reps },
       lastMiles: miles,
     }));
   };
