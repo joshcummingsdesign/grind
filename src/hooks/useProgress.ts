@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { UserProgress } from "@/types";
+import { workoutCycle } from "@/models/workouts";
 
 const STORAGE_KEY = "grind-progress";
 
@@ -43,7 +44,7 @@ export const useProgress = () => {
     const today = new Date().toISOString().split("T")[0];
     setProgress((prev) => ({
       ...prev,
-      currentWorkoutIndex: (prev.currentWorkoutIndex + 1) % 6,
+      currentWorkoutIndex: (prev.currentWorkoutIndex + 1) % workoutCycle.length,
       completedDates: prev.completedDates.includes(today)
         ? prev.completedDates
         : [...prev.completedDates, today],

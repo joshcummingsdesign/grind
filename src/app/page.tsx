@@ -8,7 +8,7 @@ import confetti from "canvas-confetti";
 import { StreakGraph } from "@/components/StreakGraph";
 import { CurrentWorkoutCard } from "@/components/CurrentWorkoutCard";
 import { useProgress } from "@/hooks/useProgress";
-import { workouts } from "@/data/workouts";
+import { workoutCycle, getWorkoutById } from "@/models/workouts";
 
 export default function Home() {
   const router = useRouter();
@@ -33,7 +33,8 @@ export default function Home() {
     );
   }
 
-  const currentWorkout = workouts[progress.currentWorkoutIndex];
+  const currentWorkoutId = workoutCycle[progress.currentWorkoutIndex];
+  const currentWorkout = getWorkoutById(currentWorkoutId)!;
 
   return (
     <PageContainer>

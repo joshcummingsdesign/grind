@@ -9,7 +9,7 @@ import { ExerciseModal } from "@/components/ExerciseModal";
 import { QuitWorkoutModal } from "@/components/QuitWorkoutModal";
 import { useProgress } from "@/hooks/useProgress";
 import { useNavigationGuard } from "@/hooks/useNavigationGuard";
-import { workouts } from "@/data/workouts";
+import { workoutCycle, getWorkoutById } from "@/models/workouts";
 import { Exercise, Phase } from "@/types";
 
 export default function WorkoutPage() {
@@ -28,7 +28,6 @@ export default function WorkoutPage() {
     stability: false,
     strength: false,
     conditioning: false,
-    cardio: false,
   });
   const [showQuitModal, setShowQuitModal] = useState(false);
 
@@ -36,7 +35,8 @@ export default function WorkoutPage() {
     return registerGuard(() => setShowQuitModal(true));
   }, [registerGuard]);
 
-  const currentWorkout = workouts[progress.currentWorkoutIndex];
+  const currentWorkoutId = workoutCycle[progress.currentWorkoutIndex];
+  const currentWorkout = getWorkoutById(currentWorkoutId)!;
   const lastReps = progress.lastReps[currentWorkout?.id];
   const lastMiles = progress.lastMiles;
 
@@ -81,7 +81,11 @@ export default function WorkoutPage() {
     }));
   };
 
-  const allPhasesCompleted = Object.values(completedPhases).every(Boolean);
+  const allPhasesCompleted = Object.entries(completedPhases).every(
+    ([phase, completed]) =>
+      !currentWorkout.phases[phase as keyof typeof currentWorkout.phases] ||
+      completed,
+  );
 
   const handleComplete = () => {
     completeWorkout(currentWorkout.id, strengthReps, cardioMiles);
@@ -95,88 +99,83 @@ export default function WorkoutPage() {
         <Typography variant="h5">{currentWorkout.name}</Typography>
       </Header>
 
-      <PhaseCard
-        title="Tension Control"
-        exercises={getPhaseExercises(
-          currentWorkout.phases.tensionControl,
-          "tensionControl",
-        )}
-        onExerciseClick={setSelectedExercise}
-        completed={completedPhases.tensionControl}
-        onToggleComplete={() => togglePhase("tensionControl")}
-        currentLevel={getLevel("tensionControl")}
-        maxLevel={getMaxLevel(currentWorkout.phases.tensionControl)}
-        onLevelChange={(level) =>
-          setPhaseLevel(currentWorkout.id, "tensionControl", level)
-        }
-      />
+      {currentWorkout.phases.tensionControl && (
+        <PhaseCard
+          title="Tension Control"
+          exercises={getPhaseExercises(
+            currentWorkout.phases.tensionControl,
+            "tensionControl",
+          )}
+          onExerciseClick={setSelectedExercise}
+          completed={completedPhases.tensionControl}
+          onToggleComplete={() => togglePhase("tensionControl")}
+          currentLevel={getLevel("tensionControl")}
+          maxLevel={getMaxLevel(currentWorkout.phases.tensionControl)}
+          onLevelChange={(level) =>
+            setPhaseLevel(currentWorkout.id, "tensionControl", level)
+          }
+        />
+      )}
 
-      <PhaseCard
-        title="Stability"
-        exercises={getPhaseExercises(
-          currentWorkout.phases.stability,
-          "stability",
-        )}
-        onExerciseClick={setSelectedExercise}
-        completed={completedPhases.stability}
-        onToggleComplete={() => togglePhase("stability")}
-        currentLevel={getLevel("stability")}
-        maxLevel={getMaxLevel(currentWorkout.phases.stability)}
-        onLevelChange={(level) =>
-          setPhaseLevel(currentWorkout.id, "stability", level)
-        }
-      />
+      {currentWorkout.phases.stability && (
+        <PhaseCard
+          title="Stability"
+          exercises={getPhaseExercises(
+            currentWorkout.phases.stability,
+            "stability",
+          )}
+          onExerciseClick={setSelectedExercise}
+          completed={completedPhases.stability}
+          onToggleComplete={() => togglePhase("stability")}
+          currentLevel={getLevel("stability")}
+          maxLevel={getMaxLevel(currentWorkout.phases.stability)}
+          onLevelChange={(level) =>
+            setPhaseLevel(currentWorkout.id, "stability", level)
+          }
+        />
+      )}
 
-      <PhaseCard
-        title="Strength"
-        exercises={getPhaseExercises(
-          currentWorkout.phases.strength,
-          "strength",
-        )}
-        onExerciseClick={setSelectedExercise}
-        completed={completedPhases.strength}
-        onToggleComplete={() => togglePhase("strength")}
-        isStrength
-        strengthReps={strengthReps}
-        onStrengthRepsChange={setStrengthReps}
-        currentLevel={getLevel("strength")}
-        maxLevel={getMaxLevel(currentWorkout.phases.strength)}
-        onLevelChange={(level) =>
-          setPhaseLevel(currentWorkout.id, "strength", level)
-        }
-      />
+      {currentWorkout.phases.strength && (
+        <PhaseCard
+          title="Strength"
+          exercises={getPhaseExercises(
+            currentWorkout.phases.strength,
+            "strength",
+          )}
+          onExerciseClick={setSelectedExercise}
+          completed={completedPhases.strength}
+          onToggleComplete={() => togglePhase("strength")}
+          isStrength
+          strengthReps={strengthReps}
+          onStrengthRepsChange={setStrengthReps}
+          currentLevel={getLevel("strength")}
+          maxLevel={getMaxLevel(currentWorkout.phases.strength)}
+          onLevelChange={(level) =>
+            setPhaseLevel(currentWorkout.id, "strength", level)
+          }
+        />
+      )}
 
-      <PhaseCard
-        title="Conditioning"
-        exercises={getPhaseExercises(
-          currentWorkout.phases.conditioning,
-          "conditioning",
-        )}
-        onExerciseClick={setSelectedExercise}
-        completed={completedPhases.conditioning}
-        onToggleComplete={() => togglePhase("conditioning")}
-        currentLevel={getLevel("conditioning")}
-        maxLevel={getMaxLevel(currentWorkout.phases.conditioning)}
-        onLevelChange={(level) =>
-          setPhaseLevel(currentWorkout.id, "conditioning", level)
-        }
-      />
-
-      <PhaseCard
-        title="Cardio"
-        exercises={getPhaseExercises(currentWorkout.phases.cardio, "cardio")}
-        onExerciseClick={setSelectedExercise}
-        completed={completedPhases.cardio}
-        onToggleComplete={() => togglePhase("cardio")}
-        isCardio
-        cardioMiles={cardioMiles}
-        onCardioMilesChange={setCardioMiles}
-        currentLevel={getLevel("cardio")}
-        maxLevel={getMaxLevel(currentWorkout.phases.cardio)}
-        onLevelChange={(level) =>
-          setPhaseLevel(currentWorkout.id, "cardio", level)
-        }
-      />
+      {currentWorkout.phases.conditioning && (
+        <PhaseCard
+          title="Conditioning"
+          exercises={getPhaseExercises(
+            currentWorkout.phases.conditioning,
+            "conditioning",
+          )}
+          onExerciseClick={setSelectedExercise}
+          completed={completedPhases.conditioning}
+          onToggleComplete={() => togglePhase("conditioning")}
+          currentLevel={getLevel("conditioning")}
+          maxLevel={getMaxLevel(currentWorkout.phases.conditioning)}
+          onLevelChange={(level) =>
+            setPhaseLevel(currentWorkout.id, "conditioning", level)
+          }
+          isCardio={currentWorkout.id === "cardio"}
+          cardioMiles={cardioMiles}
+          onCardioMilesChange={setCardioMiles}
+        />
+      )}
 
       <CompleteButton
         variant="contained"

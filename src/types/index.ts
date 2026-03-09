@@ -14,11 +14,10 @@ export type Workout = {
   name: string;
   description: string;
   phases: {
-    tensionControl: Phase;
-    stability: Phase;
-    strength: Phase;
-    conditioning: Phase;
-    cardio: Phase;
+    tensionControl?: Phase;
+    stability?: Phase;
+    strength?: Phase;
+    conditioning?: Phase;
   };
 };
 
