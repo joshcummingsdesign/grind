@@ -80,7 +80,17 @@ export const workouts: Workout[] = [
                 name: "Wall Push-ups",
                 description:
                   "Stand facing a wall with your arms extended and place your hands on the wall. Lower yourself toward the wall and push back out. Focus on controlled movement and full range of motion.",
-                target: "10-15",
+                target: "10-15+",
+              },
+            ],
+          },
+          2: {
+            exercises: [
+              {
+                name: "Incline Push-ups",
+                description:
+                  "Place hands on an elevated surface (bench, step, or table). Perform push-ups maintaining a straight body line.",
+                target: "12-15+",
               },
             ],
           },
@@ -172,7 +182,17 @@ export const workouts: Workout[] = [
                 name: "Vertical Pulls",
                 description:
                   "Set up at a slight incline and grab a pole or doorframe in front of you. Pull your chest to the pole or doorframe while keeping your body straight. Lower with control.",
-                target: "10-15",
+                target: "12-15+",
+              },
+            ],
+          },
+          2: {
+            exercises: [
+              {
+                name: "Incline Row",
+                description:
+                  "Set up at an incline using rings at waist height. Pull your chest to the rings while keeping your body straight. Lower with control.",
+                target: "12-15+",
               },
             ],
           },
@@ -264,7 +284,7 @@ export const workouts: Workout[] = [
                 name: "Squat Jumps",
                 description:
                   "Squat down then explode upward into a jump. Land softly and immediately descend into the next rep. Maintain good form.",
-                target: "20-30s",
+                target: "20-30s+",
               },
             ],
           },
@@ -346,7 +366,7 @@ export const workouts: Workout[] = [
                 name: "Plank",
                 description:
                   "Hold a forearm plank position with body in a straight line. Squeeze glutes, brace core, and breathe steadily.",
-                target: "20-30s",
+                target: "20-30s+",
               },
             ],
           },
@@ -428,7 +448,7 @@ export const workouts: Workout[] = [
                 name: "Hamstring Curls",
                 description:
                   "Lie down on your back with your feet placed in a pair of rings a foot or so off the ground. Start with your legs extended, and pull your feet toward your butt. Extend your legs to return to the starting position.",
-                target: "10-15",
+                target: "12-15+",
               },
             ],
           },
@@ -505,7 +525,7 @@ export const workouts: Workout[] = [
                 name: "Ring Hip Abduction",
                 description:
                   "Set up with rings as you would for hamstring curls, but instead of pulling, push your feet apart with your toes pointing upwards.",
-                target: "10-15",
+                target: "12-15+",
               },
             ],
           },
