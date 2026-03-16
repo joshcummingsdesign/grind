@@ -50,6 +50,26 @@ export const workouts: Workout[] = [
               },
             ],
           },
+          2: {
+            exercises: [
+              {
+                name: "Push-up",
+                description:
+                  "Start in a plank position with hands shoulder-width apart. Lower your chest to the ground, then push back up. Keep your body in a straight line throughout.",
+                sets: 3,
+              },
+            ],
+          },
+          3: {
+            exercises: [
+              {
+                name: "Dip Hold",
+                description:
+                  "Support yourself on parallel bars or rings with arms straight. Hold this top position with shoulders down and core engaged.",
+                sets: 3,
+              },
+            ],
+          },
         },
       },
       conditioning: {
@@ -118,6 +138,26 @@ export const workouts: Workout[] = [
                 name: "Incline Row",
                 description:
                   "Set up at an incline using rings at waist height. Pull your chest to the rings while keeping your body straight. Lower with control.",
+                sets: 3,
+              },
+            ],
+          },
+          2: {
+            exercises: [
+              {
+                name: "Table Row",
+                description:
+                  "Set up at the rings with your back parallel to the ground and your legs bent at 90 degrees. Pull your chest to the rings while maintaining this position. Lower with control.",
+                sets: 3,
+              },
+            ],
+          },
+          3: {
+            exercises: [
+              {
+                name: "Straight Row",
+                description:
+                  "Set up like you would for the Table Row but keep your legs straight. Pull your chest to the rings while keeping your body in a straight line. Lower with control.",
                 sets: 3,
               },
             ],
@@ -204,6 +244,16 @@ export const workouts: Workout[] = [
               },
             ],
           },
+          3: {
+            exercises: [
+              {
+                name: "Ring Spot Lunges",
+                description:
+                  "Perform single-leg squats with one leg suspended backward in the rings to support you in the bottom position. Don't let the weight fall back onto your suspended foot, and squat straight down on your front foot.",
+                sets: 3,
+              },
+            ],
+          },
         },
       },
       conditioning: {
@@ -272,6 +322,16 @@ export const workouts: Workout[] = [
                 name: "Hollow Body Hold",
                 description:
                   "Lie on your back, press lower back into floor. Lift shoulders and legs off ground, arms by ears. Hold this banana shape.",
+                sets: 3,
+              },
+            ],
+          },
+          2: {
+            exercises: [
+              {
+                name: "Knee Raises",
+                description:
+                  "Lie flat on your back and bend your knees to 90 degrees. Lift them to your chest and lower with control. Let your heels kiss the floor, so your feet aren't resting during the movement. When you pick your knees up, try to curl your pelvis up as if you're trying to pick your tailbone up off the floor.",
                 sets: 3,
               },
             ],
@@ -348,6 +408,16 @@ export const workouts: Workout[] = [
               },
             ],
           },
+          2: {
+            exercises: [
+              {
+                name: "Cross Ankle Hip Bridge",
+                description:
+                  "Perform a straight leg hip bridge with one ankle crossed on top of the other. Lift your hips by squeezing your glutes. Lower with control and repeat on the other side.",
+                sets: 3,
+              },
+            ],
+          },
         },
       },
       conditioning: {
@@ -411,6 +481,16 @@ export const workouts: Workout[] = [
                 name: "Wide Stance Side Plank",
                 description:
                   "Side plank with your feet wide for stability. Keep hips high and body in a straight line. Hold each side.",
+                sets: 3,
+              },
+            ],
+          },
+          2: {
+            exercises: [
+              {
+                name: "Foot on Top Side Plank",
+                description:
+                  "Side plank with your top foot stacked on top of the bottom foot. Keep hips high and body in a straight line. Hold each side.",
                 sets: 3,
               },
             ],
